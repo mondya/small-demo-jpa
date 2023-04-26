@@ -1,3 +1,6 @@
 spring:
   application:
     name: small-demo-jpa
+    
+  profiles:
+    active: prd
