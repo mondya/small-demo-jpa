@@ -54,6 +54,14 @@ public class UserTest {
     }
     
     @Test
+    void update() {
+        Optional<User> optionalUser = userRepository.findById(1L);
+        User user = optionalUser.get();
+        user.setUserName("xhh");
+        userRepository.save(user);
+    }
+    
+    @Test
     void deleteById() {
         System.out.println("---");
         userRepository.deleteById(1L);
