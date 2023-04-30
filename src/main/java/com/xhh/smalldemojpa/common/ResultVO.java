@@ -13,14 +13,14 @@ public class ResultVO implements Serializable {
     String message;
     Map<String, Object> result = new HashMap<>();
 
-    public ResultVO success() {
+    public static ResultVO success() {
         ResultVO resultVO = new ResultVO();
         resultVO.setStatus(1);
         resultVO.setMessage("success");
         return resultVO;
     }
 
-    public ResultVO failure() {
+    public static ResultVO failure() {
         ResultVO resultVO = new ResultVO();
         resultVO.setStatus(0);
         resultVO.setMessage("failed");

@@ -1,11 +1,17 @@
 package com.xhh.smalldemojpa;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.xhh.smalldemojpa.dao.UserRepository;
 import com.xhh.smalldemojpa.domain.user.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import javax.annotation.Resource;
 
@@ -19,7 +25,7 @@ public class UserTest {
     @Test
     void save() {
         User user = new User();
-        user.setUserName("admin");
+        user.setUserName("simple");
         user.setPassword("admin123");
         user.setGender((byte)0);
         user.setIdCard("3601211999");
@@ -42,6 +48,14 @@ public class UserTest {
     void getByName() {
 //        User admin = userRepository.getByUserName("admin");
 //        System.out.println(admin);
+    }
+    
+    @Test
+    void getAllBySearch() {
+
+        Page<User> userList = userRepository.fetchAllUserBySearch("%" + "admin" + "%", PageRequest.of(0, 2, Sort.Direction.DESC, "id"));
+        System.out.println(userList.get().collect(Collectors.toList()).toString());
+        System.out.println("size = " + userList.getTotalElements());
     }
     
     @Test
