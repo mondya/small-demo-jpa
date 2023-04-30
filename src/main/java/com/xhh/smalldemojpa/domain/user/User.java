@@ -2,7 +2,6 @@ package com.xhh.smalldemojpa.domain.user;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
