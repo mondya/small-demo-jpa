@@ -47,9 +47,9 @@ public class UserTest {
     @Test
     void getByIdList() {
         ArrayList<Long> longs = new ArrayList<>();
-        longs.add(1l);
-        longs.add(2l);
-        List<User> byIdList = userRepository.findByIdList(longs);
+//        longs.add(1l);
+//        longs.add(2l);
+        List<User> byIdList = userRepository.findByIdList(null);
         System.out.println(byIdList);
     }
     

@@ -2,12 +2,16 @@ package com.xhh.smalldemojpa.service;
 
 import com.xhh.smalldemojpa.dao.BaseRepository;
 import com.xhh.smalldemojpa.domain.user.BaseEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class BaseServiceImpl<R extends BaseRepository<T>, T extends BaseEntity> implements BaseService<T>{
     
     @Resource 
@@ -20,6 +24,10 @@ public class BaseServiceImpl<R extends BaseRepository<T>, T extends BaseEntity> 
 
     @Override
     public List<T> findByIdInList(List<Long> idList) {
+        if (CollectionUtils.isEmpty(idList)) {
+            log.info("[BaseServiceImpl] idList is null");
+            return new ArrayList<T>();
+        }
         return repository.findByIdList(idList);
     }
 
