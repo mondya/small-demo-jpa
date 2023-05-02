@@ -53,7 +53,7 @@ public class UserTest {
     @Test
     void getAllBySearch() {
 
-        Page<User> userList = userRepository.fetchAllUserBySearch("%" + "admin" + "%", PageRequest.of(0, 2, Sort.Direction.DESC, "id"));
+        Page<User> userList = userRepository.fetchAllUserBySearch("%\\" + "" + "%", PageRequest.of(0, 2, Sort.Direction.DESC, "id"));
         System.out.println(userList.get().collect(Collectors.toList()).toString());
         System.out.println("size = " + userList.getTotalElements());
     }

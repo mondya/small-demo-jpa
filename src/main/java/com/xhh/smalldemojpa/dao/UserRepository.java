@@ -18,13 +18,13 @@ public interface UserRepository extends BaseRepository<User> {
     // getById在测试类中不可用
     // User getById(Long name);
     @Override
-    @Query(value = "select * from system_user where id = ?1", nativeQuery = true)
+    @Query(value = "select * from system_user where id = :id", nativeQuery = true)
     User getById(Long id);
     
     User findByUserName(String name);
     
     // JPQL方式@Query(value = "select u from User u where (?1 IS NULL OR u.userName LIKE ?1)")
     // 原生sql
-    @Query(value = "select * from system_user where (:#{#searchValue} IS NULL OR user_name LIKE :#{#searchValue})", nativeQuery = true)
+    @Query(value = "select * from system_user where (:#{#searchValue} = '' OR user_name LIKE :#{#searchValue})", nativeQuery = true)
     Page<User> fetchAllUserBySearch(String searchValue, Pageable pageable); 
 }
