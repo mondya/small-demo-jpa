@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 
+import java.util.List;
+
 @NoRepositoryBean
 public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, Long> {
     
@@ -13,5 +15,8 @@ public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, L
     @Modifying
     @Override
     void deleteById(Long id);
+    
+    @Query("select e from #{#entityName} e where e.id in :idList")
+    List<T> findByIdList(List<Long> idList);
     
 }  

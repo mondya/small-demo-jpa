@@ -5,6 +5,7 @@ import com.xhh.smalldemojpa.domain.user.BaseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class BaseServiceImpl<R extends BaseRepository<T>, T extends BaseEntity> implements BaseService<T>{
@@ -15,6 +16,11 @@ public class BaseServiceImpl<R extends BaseRepository<T>, T extends BaseEntity> 
     @Override
     public T findById(Long id) {
         return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<T> findByIdInList(List<Long> idList) {
+        return repository.findByIdList(idList);
     }
 
     @Override
