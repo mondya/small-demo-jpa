@@ -1,6 +1,6 @@
 package com.xhh.smalldemojpa.service;
 
-import com.xhh.smalldemojpa.domain.user.BaseEntity;
+import com.xhh.smalldemojpa.domain.BaseEntity;
 
 import java.util.List;
 
@@ -15,4 +15,6 @@ public interface BaseService<T extends BaseEntity> {
     void update(T entity);
     
     void delete(Long id);
+    
+    List<T> findAll();
 }

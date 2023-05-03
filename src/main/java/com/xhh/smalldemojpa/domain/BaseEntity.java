@@ -1,4 +1,4 @@
-package com.xhh.smalldemojpa.domain.user;
+package com.xhh.smalldemojpa.domain;
 
 import lombok.Data;
 
@@ -18,15 +18,18 @@ import java.time.LocalDateTime;
 public class BaseEntity implements Serializable {
     
     @Column
-    private LocalDateTime dataCreated;
+    private LocalDateTime dateCreated;
     @Column
     private LocalDateTime lastUpdated;
+    @Column
+    private Byte status;
     
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
-        this.dataCreated = now;
+        this.dateCreated = now;
         this.lastUpdated = now;
+        this.status = (byte) 1;
     }
     
     @PreUpdate

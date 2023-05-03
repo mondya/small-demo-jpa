@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Service
+@Service("user")
 public class UserServiceImpl extends BaseServiceImpl<UserRepository, User> implements UserService{
     
     @Resource

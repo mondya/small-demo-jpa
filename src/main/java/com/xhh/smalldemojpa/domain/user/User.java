@@ -1,5 +1,6 @@
 package com.xhh.smalldemojpa.domain.user;
 
+import com.xhh.smalldemojpa.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

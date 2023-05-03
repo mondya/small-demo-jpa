@@ -1,6 +1,6 @@
 package com.xhh.smalldemojpa.dao;
 
-import com.xhh.smalldemojpa.domain.user.BaseEntity;
+import com.xhh.smalldemojpa.domain.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

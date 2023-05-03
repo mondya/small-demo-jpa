@@ -1,20 +1,20 @@
 package com.xhh.smalldemojpa.service;
 
 import com.xhh.smalldemojpa.dao.BaseRepository;
-import com.xhh.smalldemojpa.domain.user.BaseEntity;
+import com.xhh.smalldemojpa.domain.BaseEntity;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Slf4j
-public class BaseServiceImpl<R extends BaseRepository<T>, T extends BaseEntity> implements BaseService<T>{
+public abstract class  BaseServiceImpl<R extends BaseRepository<T>, T extends BaseEntity> implements BaseService<T>{
     
-    @Resource 
+    @Autowired 
     private R repository;
     
     @Override
@@ -44,5 +44,10 @@ public class BaseServiceImpl<R extends BaseRepository<T>, T extends BaseEntity> 
     @Override
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+    
+    @Override
+    public List<T> findAll() {
+        return repository.findAll();
     }
 }
