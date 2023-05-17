@@ -37,6 +37,7 @@ public class SecurityConfig {
                                         .anyRequest().authenticated()
                 ).httpBasic(Customizer.withDefaults());
 
+        httpSecurity.cors();
         // 禁用缓存
         httpSecurity.headers().cacheControl();
         
