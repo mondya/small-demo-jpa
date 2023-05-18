@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 @Component
 public class AuthenticationTokenFilter extends OncePerRequestFilter {
@@ -45,10 +46,12 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
     
     public Authentication getAuthenticationByToken(String token) {
         String claimsFromToken = JwtUtils.getClaimsFromToken(token);
-        
-        
         JwtUser jwtUser = JSON.parseObject(claimsFromToken, JwtUser.class);
         
-        return new UsernamePasswordAuthenticationToken(jwtUser, null, null);
+        if (Objects.nonNull(jwtUser)) {
+            return new UsernamePasswordAuthenticationToken(jwtUser, null, null);
+        } else {
+            return null;
+        }
     } 
 }
