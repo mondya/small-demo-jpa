@@ -72,7 +72,7 @@ public class UserTest {
         Optional<User> byId = userRepository.findById(1L);
         User user = byId.get();
         user.setLastUpdated(LocalDateTime.now());
-        user.setDataCreated(LocalDateTime.now());
+        user.setDateCreated(LocalDateTime.now());
         userRepository.save(user);
     }
     
