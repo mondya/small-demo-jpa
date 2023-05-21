@@ -29,8 +29,8 @@ public interface UserRepository extends BaseRepository<User> {
     // #{#searchValue}，searchValue作为方法中的传参，这样接收是错误写法
     // 所以 (:#{#searchValue} IS NULL OR u.userName LIKE :#{#searchValue}) 如果没有加上 :，在执行sql时会报错 unexpected char # ....
     // JPQL方式
-    // 正确写法：:#{#searchValue} 或者 :searchValue
-    @Query(value = "select u from User u where (:#{#searchValue} IS NULL OR u.userName LIKE :#{#searchValue})")
+    // 正确写法：:#{#searchValue} 或者 :searchValue 或者 ?1
+    @Query(value = "select u from User u where (?1 IS NULL OR u.userName LIKE ?1)")
     //@Query(value = "select u from User u where (?1 IS NULL OR u.userName LIKE ?1)")
     // 原生sql
 //    @Query(value = "select * from system_user where (:#{#searchValue} = '' OR user_name LIKE :#{#searchValue})", nativeQuery = true)
