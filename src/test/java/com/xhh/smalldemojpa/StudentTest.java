@@ -10,8 +10,8 @@ public class StudentTest {
     @Test
     void test() {
         StudentEntity student = new StudentEntity();
-        student.setNormal(true);
+        student.setIsNormal(true);
 
-        System.out.println("isNormal" + student.isNormal());
+        System.out.println("isNormal" + student.getIsNormal());
     }
 }

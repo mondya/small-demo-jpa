@@ -4,6 +4,7 @@ import com.xhh.smalldemojpa.domain.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,9 +25,11 @@ public interface UserRepository extends BaseRepository<User> {
     User findByUserName(String name);
     
     // :#{#searchValue}和#{#{searchValue}}的区别：:#{#searchValue}是一种SpEL表达式，它可以在运行时动态计算出占位符的位置，并将其绑定到查询参数中。
-    // 而 #{#{searchValue}}是jpa中的一种占位符，它会在运行时将占位符替换成实际的参数值，并通过JPA的参数绑定机制将参数绑定到查询语句中。
+    // 而 #{#{searchValue}}表示引用一个SpEL表达式中的另一个表达式
+    // #{#searchValue}，searchValue作为方法中的传参，这样接收是错误写法
     // 所以 (:#{#searchValue} IS NULL OR u.userName LIKE :#{#searchValue}) 如果没有加上 :，在执行sql时会报错 unexpected char # ....
     // JPQL方式
+    // 正确写法：:#{#searchValue} 或者 :searchValue
     @Query(value = "select u from User u where (:#{#searchValue} IS NULL OR u.userName LIKE :#{#searchValue})")
     //@Query(value = "select u from User u where (?1 IS NULL OR u.userName LIKE ?1)")
     // 原生sql
