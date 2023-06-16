@@ -46,6 +46,9 @@ public class User extends BaseEntity implements Serializable {
 
     @Column
     private Byte status;
+    
+    @Column
+    private Long studentId;
 
     @Override
     public String toString() {
