@@ -1,10 +1,13 @@
 package com.xhh.smalldemojpa.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
+import com.xhh.smalldemojpa.domain.user.User;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -26,7 +29,7 @@ public class JsonUtils {
                 return MAPPER.writeValueAsString(object);
             }
         } catch (Exception e) {
-            log.error("object to string error: ", e);
+            log.error("object cast to string error: ", e);
         }
         
         return "";
@@ -44,7 +47,7 @@ public class JsonUtils {
         try {
             return MAPPER.readValue(json, clazz);
         } catch (JsonProcessingException e) {
-            log.error("str to object error, str:{} , e : ", json, e);
+            log.error("str cast to object error, str:{} , e : ", json, e);
         }
         
         return null;
@@ -63,11 +66,36 @@ public class JsonUtils {
             CollectionType collectionType = MAPPER.getTypeFactory().constructCollectionType(List.class, clazz);
             return MAPPER.readValue(str, collectionType);
         } catch (Exception e) {
-            log.error("str to list object error, str@{}, e:", str, e);
+            log.error("str cast to list object error, str@{}, e:", str, e);
         }
         
         return List.of();
     }
-    
-    
+
+
+    /**
+     * json 转 JsonNode，用于获取嵌套json对象
+     * @param json
+     * @return
+     */
+    public static JsonNode jsonToNode(String json) {
+        try {
+            return MAPPER.readTree(json);
+        } catch (Exception e) {
+            log.error("json cast to JsonNode error, str@{}, e:", json, e);
+        }
+        
+        return null;
+    }
+
+    public static void main(String[] args) {
+        List<User> userList = new ArrayList<>();
+        User u1 = new User();
+        u1.setId(1L);
+        userList.add(u1);
+        User u2 = new User();
+        u2.setId(2L);
+        userList.add(u2);
+        System.out.println(objectToJson(userList));
+    }
 }
