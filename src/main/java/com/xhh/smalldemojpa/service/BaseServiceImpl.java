@@ -60,4 +60,9 @@ public abstract class BaseServiceImpl<R extends BaseRepository<T>, T extends Bas
     public List<T> findAll() {
         return repository.findAll();
     }
+    
+    @Override
+    public void saveAll(List<T> entityList) {
+        repository.saveAll(entityList);
+    }
 }
