@@ -33,7 +33,7 @@ public class SecurityConfig {
         httpSecurity.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests(
                         (authz) -> 
-                                authz.antMatchers("/api/1.0/login").permitAll().antMatchers(HttpMethod.OPTIONS).permitAll()
+                                authz.antMatchers("/api/1.0/login").permitAll().antMatchers(HttpMethod.OPTIONS).permitAll().antMatchers("/quartzJob/**").permitAll()
                                         .anyRequest().authenticated()
                 ).httpBasic(Customizer.withDefaults());
 

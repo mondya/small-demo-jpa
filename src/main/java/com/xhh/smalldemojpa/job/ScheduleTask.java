@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ScheduleTask {
     
-    @Scheduled(cron = "0 25 14 * * ?")
-    public void test(){
-        System.out.println("定时任务执行");
-    }
+//    @Scheduled(cron = "0 25 14 * * ?")
+//    public void test(){
+//        System.out.println("定时任务执行");
+//    }
 }
